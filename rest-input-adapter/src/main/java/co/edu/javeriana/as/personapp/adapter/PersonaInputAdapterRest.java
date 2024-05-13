@@ -67,6 +67,12 @@ public class PersonaInputAdapterRest {
 		}
 	}
 
+	/**
+	 *
+	 * @param request
+	 * @return
+	 */
+
 	public PersonaResponse crearPersona(PersonaRequest request) {
 		try {
 

@@ -28,6 +28,11 @@ public class PersonaMapperRest {
 				"OK");
 	}
 
+	/**
+	 *
+	 * @param request
+	 * @return
+	 */
 	public Person fromAdapterToDomain(PersonaRequest request) {
 		Person person = new Person();
 
