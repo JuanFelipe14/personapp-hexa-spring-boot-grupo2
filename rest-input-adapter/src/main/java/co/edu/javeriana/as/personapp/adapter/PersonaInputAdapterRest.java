@@ -35,6 +35,7 @@ public class PersonaInputAdapterRest {
 	@Autowired
 	private PersonaMapperRest personaMapperRest;
 
+	@Autowired
 	PersonInputPort personInputPort;
 
 	private String setPersonOutputPortInjection(String dbOption) throws InvalidOptionException {
@@ -68,9 +69,15 @@ public class PersonaInputAdapterRest {
 
 	public PersonaResponse crearPersona(PersonaRequest request) {
 		try {
-			setPersonOutputPortInjection(request.getDatabase());
+
 			Person person = personInputPort.create(personaMapperRest.fromAdapterToDomain(request));
-			return personaMapperRest.fromDomainToAdapterRestMaria(person);
+
+			if(setPersonOutputPortInjection(request.getDatabase()).equals(DatabaseOption.MONGO.toString())){
+				return personaMapperRest.fromDomainToAdapterRestMongo(person);
+			}else if(setPersonOutputPortInjection(request.getDatabase()).equals(DatabaseOption.MARIA.toString())){
+				return personaMapperRest.fromDomainToAdapterRestMaria(person);
+			}
+
 		} catch (InvalidOptionException e) {
 			log.warn(e.getMessage());
 			//return new PersonaResponse("", "", "", "", "", "", "");
