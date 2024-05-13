@@ -30,7 +30,7 @@ public class PersonaMapperRest {
 
 	/**
 	 *
-	 * @param request
+	 * @param request - El request
 	 * @return
 	 */
 	public Person fromAdapterToDomain(PersonaRequest request) {

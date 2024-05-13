@@ -69,7 +69,7 @@ public class PersonaInputAdapterRest {
 
 	/**
 	 *
-	 * @param request
+	 * @param request - El request x2
 	 * @return
 	 */
 
