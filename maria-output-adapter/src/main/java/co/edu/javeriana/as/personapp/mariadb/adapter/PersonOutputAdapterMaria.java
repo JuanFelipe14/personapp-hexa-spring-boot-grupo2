@@ -31,7 +31,7 @@ public class PersonOutputAdapterMaria implements PersonOutputPort {
 	public Person save(Person person) {
 		log.debug("Into save on Adapter MariaDB");
 		PersonaEntity persistedPersona = personaRepositoryMaria.save(personaMapperMaria.fromDomainToAdapter(person));
-		return personaMapperMaria.fromAdapterToDomain(persistedPersona);
+		return personaMapperMaria.fromAdapterToDomain(persistedPersona, true);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class PersonOutputAdapterMaria implements PersonOutputPort {
 	@Override
 	public List<Person> find() {
 		log.debug("Into find on Adapter MariaDB");
-		return personaRepositoryMaria.findAll().stream().map(personaMapperMaria::fromAdapterToDomain)
+		return personaRepositoryMaria.findAll().stream().map(x -> personaMapperMaria.fromAdapterToDomain(x, true))
 				.collect(Collectors.toList());
 	}
 
@@ -54,7 +54,7 @@ public class PersonOutputAdapterMaria implements PersonOutputPort {
 		if (personaRepositoryMaria.findById(identification).isEmpty()) {
 			return null;
 		} else {
-			return personaMapperMaria.fromAdapterToDomain(personaRepositoryMaria.findById(identification).get());
+			return personaMapperMaria.fromAdapterToDomain(personaRepositoryMaria.findById(identification).get(),true);
 		}
 	}
 

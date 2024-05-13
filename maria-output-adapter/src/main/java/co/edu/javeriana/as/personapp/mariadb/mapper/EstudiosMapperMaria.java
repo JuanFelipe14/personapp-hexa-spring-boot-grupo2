@@ -41,9 +41,13 @@ public class EstudiosMapperMaria {
 		return universityName != null ? universityName : "";
 	}
 
-	public Study fromAdapterToDomain(EstudiosEntity estudiosEntity) {
+	public Study fromAdapterToDomain(EstudiosEntity estudiosEntity, boolean firsReference) {
 		Study study = new Study();
-		study.setPerson(personaMapperMaria.fromAdapterToDomain(estudiosEntity.getPersona()));
+		if(firsReference){
+			study.setPerson(personaMapperMaria.fromAdapterToDomain(estudiosEntity.getPersona(), false));
+		}else{
+			study.setPerson(null);
+		}
 		study.setProfession(profesionMapperMaria.fromAdapterToDomain(estudiosEntity.getProfesion()));
 		study.setGraduationDate(validateGraduationDate(estudiosEntity.getFecha()));
 		study.setUniversityName(validateUniversityName(estudiosEntity.getUniver()));

@@ -52,7 +52,7 @@ public class ProfesionMapperMaria {
 
 	private List<Study> validateStudies(List<EstudiosEntity> estudiosEntity) {
 		return estudiosEntity != null && !estudiosEntity.isEmpty() ? estudiosEntity.stream()
-				.map(estudio -> estudiosMapperMaria.fromAdapterToDomain(estudio)).collect(Collectors.toList())
+				.map(estudio -> estudiosMapperMaria.fromAdapterToDomain(estudio, true)).collect(Collectors.toList())
 				: new ArrayList<Study>();
 	}
 }

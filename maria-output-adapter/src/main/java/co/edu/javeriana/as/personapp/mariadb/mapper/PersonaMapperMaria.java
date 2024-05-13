@@ -57,14 +57,18 @@ public class PersonaMapperMaria {
 				: new ArrayList<TelefonoEntity>();
 	}
 
-	public Person fromAdapterToDomain(PersonaEntity personaEntity) {
+	public Person fromAdapterToDomain(PersonaEntity personaEntity, boolean firstReference) {
 		Person person = new Person();
 		person.setIdentification(personaEntity.getCc());
 		person.setFirstName(personaEntity.getNombre());
 		person.setLastName(personaEntity.getApellido());
 		person.setGender(validateGender(personaEntity.getGenero()));
 		person.setAge(validateAge(personaEntity.getEdad()));
-		person.setStudies(validateStudies(personaEntity.getEstudios()));
+		if(firstReference){
+			person.setStudies(validateStudies(personaEntity.getEstudios()));
+		}else{
+			person.setStudies(null);
+		}
 		person.setPhoneNumbers(validatePhones(personaEntity.getTelefonos()));
 		return person;
 	}
@@ -79,7 +83,7 @@ public class PersonaMapperMaria {
 
 	private List<Study> validateStudies(List<EstudiosEntity> estudiosEntity) {
 		return estudiosEntity != null && !estudiosEntity.isEmpty() ? estudiosEntity.stream()
-				.map(estudio -> estudiosMapperMaria.fromAdapterToDomain(estudio)).collect(Collectors.toList())
+				.map(estudio -> estudiosMapperMaria.fromAdapterToDomain(estudio, true)).collect(Collectors.toList())
 				: new ArrayList<Study>();
 	}
 

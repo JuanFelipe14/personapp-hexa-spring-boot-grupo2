@@ -17,7 +17,7 @@ public class MenuPrincipal {
 	//Beans
 	@Autowired
 	private PersonaInputAdapterCli personaInputAdapterCli;
-	@Autowired3
+	@Autowired
 	private TelefonoInputAdapterCli telefonoInputAdapterCli;
 
 	private static final int SALIR = 0;
