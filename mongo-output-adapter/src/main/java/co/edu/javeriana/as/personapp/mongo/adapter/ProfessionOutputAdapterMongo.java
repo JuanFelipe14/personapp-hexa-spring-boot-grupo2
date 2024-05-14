@@ -62,4 +62,5 @@ public class ProfessionOutputAdapterMongo implements ProfessionOutputPort {
             return profesionMapperMongo.fromAdapterToDomain(professionRepositoryMongo.findById(identification).get());
         }
     }
+}
 
