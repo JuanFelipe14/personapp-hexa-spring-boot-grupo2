@@ -2,6 +2,9 @@ package co.edu.javeriana.as.personapp.terminal.menu;
 
 
 import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
+import co.edu.javeriana.as.personapp.domain.Gender;
+import co.edu.javeriana.as.personapp.domain.Person;
+import co.edu.javeriana.as.personapp.domain.Profession;
 import co.edu.javeriana.as.personapp.terminal.adapter.PersonaInputAdapterCli;
 import co.edu.javeriana.as.personapp.terminal.adapter.ProfesionInputAdapterCli;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +20,8 @@ public class ProfesionMenu {
 
     private static final int OPCION_REGRESAR_MOTOR_PERSISTENCIA = 0;
     private static final int OPCION_VER_TODO = 1;
+    private static final int OPCION_CREAR = 2;
+
     // mas opciones
 
 
@@ -62,7 +67,17 @@ public class ProfesionMenu {
                         break;
                     case OPCION_VER_TODO:
                         profesionInputAdapterCli.historial();
-
+                        break;
+                    case OPCION_CREAR:
+                        Profession profession = new Profession();
+                        System.out.println("Digite el id de la profesion");
+                        profession.setIdentification(keyboard.nextInt());
+                        keyboard.nextLine();
+                        System.out.println("Digite el nombre de la profesion");
+                        profession.setName(keyboard.nextLine());
+                        System.out.println("Digite la descripcion de la profesion");
+                        profession.setDescription(keyboard.nextLine());
+                        profesionInputAdapterCli.crear(profession);
                         break;
                     // mas opciones
                     default:
@@ -77,6 +92,7 @@ public class ProfesionMenu {
     private void mostrarMenuOpciones() {
         System.out.println("----------------------");
         System.out.println(OPCION_VER_TODO + " para ver todas las profesiones");
+        System.out.println(OPCION_CREAR + " agregar persona");
 
         // implementar otras opciones
         System.out.println(OPCION_REGRESAR_MOTOR_PERSISTENCIA + " para regresar");

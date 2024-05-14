@@ -45,7 +45,7 @@ public interface PersonaMapperMaria {
 
     @Named("genderToGenero")
     default Character generoToGender(Gender gender){
-        return gender == Gender.FEMALE ? 'F' : gender == Gender.MALE ? 'M' : ' ';
+        return gender == Gender.FEMALE ? 'F' : gender == Gender.MALE ? 'M' : 'F';
     }
 
 

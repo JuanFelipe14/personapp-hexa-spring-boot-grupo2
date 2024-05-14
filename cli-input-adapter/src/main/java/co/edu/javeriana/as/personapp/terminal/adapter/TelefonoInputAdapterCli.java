@@ -55,4 +55,8 @@ public class TelefonoInputAdapterCli {
                 .map(telefonoMapperCli::fromDomainToAdapterCli)
                 .forEach(System.out::println);
     }
+
+    public void crear(Phone phone) {
+        phoneInputPort.create(phone);
+    }
 }

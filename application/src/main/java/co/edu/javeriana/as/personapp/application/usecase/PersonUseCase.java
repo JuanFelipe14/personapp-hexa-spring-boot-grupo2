@@ -33,6 +33,7 @@ public class PersonUseCase implements PersonInputPort {
 	@Override
 	public Person create(Person person) {
 		log.debug("Into create on Application Domain");
+		System.out.println(person.toString());
 		return personPersintence.save(person);
 	}
 

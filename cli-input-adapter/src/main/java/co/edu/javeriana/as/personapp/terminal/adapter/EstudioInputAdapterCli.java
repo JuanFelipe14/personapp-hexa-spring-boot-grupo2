@@ -1,19 +1,18 @@
 package co.edu.javeriana.as.personapp.terminal.adapter;
 
 import co.edu.javeriana.as.personapp.application.port.in.PersonInputPort;
-import co.edu.javeriana.as.personapp.application.port.in.ProfessionInputPort;
+import co.edu.javeriana.as.personapp.application.port.in.StudyInputPort;
 import co.edu.javeriana.as.personapp.application.port.out.PersonOutputPort;
-import co.edu.javeriana.as.personapp.application.port.out.ProfessionOutputPort;
+import co.edu.javeriana.as.personapp.application.port.out.StudyOutputPort;
 import co.edu.javeriana.as.personapp.application.usecase.PersonUseCase;
-import co.edu.javeriana.as.personapp.application.usecase.ProfessionUseCase;
+import co.edu.javeriana.as.personapp.application.usecase.StudyUseCase;
 import co.edu.javeriana.as.personapp.common.annotations.Adapter;
 import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
 import co.edu.javeriana.as.personapp.common.setup.DatabaseOption;
-import co.edu.javeriana.as.personapp.domain.Profession;
+import co.edu.javeriana.as.personapp.terminal.mapper.EstudioMapperCli;
 import co.edu.javeriana.as.personapp.terminal.mapper.PersonaMapperCli;
-import co.edu.javeriana.as.personapp.terminal.mapper.ProfesionMapperCli;
+import co.edu.javeriana.as.personapp.terminal.model.EstudiosModelCli;
 import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
-import co.edu.javeriana.as.personapp.terminal.model.ProfesionModelCli;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,27 +22,26 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Adapter
-public class ProfesionInputAdapterCli {
+public class EstudioInputAdapterCli {
 
     @Autowired
-    @Qualifier("profesionOutputAdapterMaria")
-    private ProfessionOutputPort professionOutputPortMaria;
+    @Qualifier("estudioOutputAdapterMaria")
+    private StudyOutputPort studyOutputPortMaria;
 
     @Autowired
-    @Qualifier("professionOutputAdapterMongo")
-    private ProfessionOutputPort professionOutputPortMongo;
+    @Qualifier("studyOutputAdapterMongo")
+    private StudyOutputPort studyOutputPortMongo;
 
     @Autowired
-    private ProfesionMapperCli profesionMapperCli;
+    private EstudioMapperCli estudioMapperCli;
 
-    ProfessionInputPort professionInputPort;
+    StudyInputPort studyInputPort;
 
     public void setPersonOutputPortInjection(String dbOption) throws InvalidOptionException {
         if (dbOption.equalsIgnoreCase(DatabaseOption.MARIA.toString())) {
-            professionInputPort = new ProfessionUseCase(professionOutputPortMaria);
+            studyInputPort = new StudyUseCase(studyOutputPortMaria);
         } else if (dbOption.equalsIgnoreCase(DatabaseOption.MONGO.toString())) {
-            professionInputPort = new ProfessionUseCase(professionOutputPortMongo) {
-            };
+            studyInputPort = new StudyUseCase(studyOutputPortMongo);
         } else {
             throw new InvalidOptionException("Invalid database option: " + dbOption);
         }
@@ -51,18 +49,14 @@ public class ProfesionInputAdapterCli {
 
     public void historial1() {
         log.info("Into historial PersonaEntity in Input Adapter");
-        List<ProfesionModelCli> profesion = professionInputPort.findAll().stream().map(profesionMapperCli::fromDomainToAdapterCli)
+        List<EstudiosModelCli> persona = studyInputPort.findAll().stream().map(estudioMapperCli::fromDomainToAdapterCli)
                 .collect(Collectors.toList());
-        profesion.forEach(p -> System.out.println(p.toString()));
+        persona.forEach(p -> System.out.println(p.toString()));
     }
     public void historial() {
         log.info("Into historial PersonaEntity in Input Adapter");
-        professionInputPort.findAll().stream()
-                .map(profesionMapperCli::fromDomainToAdapterCli)
+        studyInputPort.findAll().stream()
+                .map(estudioMapperCli::fromDomainToAdapterCli)
                 .forEach(System.out::println);
-    }
-
-    public void crear(Profession profession) {
-        professionInputPort.create(profession);
     }
 }
