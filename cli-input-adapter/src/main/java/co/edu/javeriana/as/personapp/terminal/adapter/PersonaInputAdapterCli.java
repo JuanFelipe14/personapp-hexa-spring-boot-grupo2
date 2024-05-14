@@ -3,6 +3,7 @@ package co.edu.javeriana.as.personapp.terminal.adapter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import co.edu.javeriana.as.personapp.domain.Phone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -55,5 +56,12 @@ public class PersonaInputAdapterCli {
 	        .map(personaMapperCli::fromDomainToAdapterCli)
 	        .forEach(System.out::println);
 	}
-
+/*
+	public void Crear(){
+		log.info("Into crear PersonaEntity in Input Adapter");
+		personInputPort.create().stream()
+				.map(personaMapperCli::fromDomainToAdapterCli)
+				.forEach(System.out::println);
+	}
+*/
 }
