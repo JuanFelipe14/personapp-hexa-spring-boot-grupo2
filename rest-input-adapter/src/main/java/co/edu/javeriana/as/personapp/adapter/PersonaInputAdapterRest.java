@@ -86,7 +86,7 @@ public class PersonaInputAdapterRest {
 
 		} catch (InvalidOptionException e) {
 			log.warn(e.getMessage());
-			//return new PersonaResponse("", "", "", "", "", "", "");
+			return new PersonaResponse("", "", "", "", "", "", "");
 		}
 		return null;
 	}
