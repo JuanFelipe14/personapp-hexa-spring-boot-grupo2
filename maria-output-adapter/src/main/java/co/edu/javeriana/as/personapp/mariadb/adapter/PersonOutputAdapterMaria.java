@@ -30,7 +30,9 @@ public class PersonOutputAdapterMaria implements PersonOutputPort {
 	@Override
 	public Person save(Person person) {
 		//log.debug("Into save on Adapter MariaDB");
-		PersonaEntity persistedPersona = personaRepositoryMaria.save(personaMapperMaria.fromDomainToAdapter(person));
+		PersonaEntity personaAGuardar =personaMapperMaria.fromDomainToAdapter(person);
+		System.out.println(personaAGuardar.toString());
+		PersonaEntity persistedPersona = personaRepositoryMaria.save(personaAGuardar);
 		return personaMapperMaria.fromAdapterToDomain(persistedPersona);
 	}
 

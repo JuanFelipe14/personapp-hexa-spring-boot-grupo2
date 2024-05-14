@@ -1,6 +1,9 @@
 package co.edu.javeriana.as.personapp.terminal.menu;
 
 import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
+import co.edu.javeriana.as.personapp.domain.Gender;
+import co.edu.javeriana.as.personapp.domain.Person;
+import co.edu.javeriana.as.personapp.domain.Phone;
 import co.edu.javeriana.as.personapp.terminal.adapter.TelefonoInputAdapterCli;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,6 +19,7 @@ public class TelefonoMenu {
 
     private static final int OPCION_REGRESAR_MOTOR_PERSISTENCIA = 0;
     private static final int OPCION_VER_TODO = 1;
+    private static final int OPCION_CREAR = 2;
     // mas opciones
 
     public void iniciarMenu(TelefonoInputAdapterCli telefonoInputAdapterCli, Scanner keyboard) {
@@ -58,6 +62,15 @@ public class TelefonoMenu {
                     case OPCION_VER_TODO:
                         telefonoInputAdapterCli.historial();
                         break;
+                    case OPCION_CREAR:
+                        Phone phone = new Phone();
+                        System.out.println("Digite el numero de telefono");
+                        phone.setNumber(keyboard.next());
+                        System.out.println("Digite el operador");
+                        phone.setCompany(keyboard.next());
+
+                        telefonoInputAdapterCli.crear(phone);
+                        break;
                     // mas opciones
                     default:
                         log.warn("La opción elegida no es válida.");
@@ -71,6 +84,7 @@ public class TelefonoMenu {
     private void mostrarMenuOpciones() {
         System.out.println("----------------------");
         System.out.println(OPCION_VER_TODO + " para ver todas los telefonos");
+        //System.out.println(OPCION_CREAR + " agregar persona");
         // implementar otras opciones
         System.out.println(OPCION_REGRESAR_MOTOR_PERSISTENCIA + " para regresar");
     }
