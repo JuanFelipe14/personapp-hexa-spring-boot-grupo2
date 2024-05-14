@@ -20,7 +20,6 @@ public class PersonUseCase implements PersonInputPort {
 
 	private PersonOutputPort personPersintence;
 
-	@Autowired
 	public PersonUseCase(@Qualifier("personOutputAdapterMaria") PersonOutputPort personPersintence) {
 		this.personPersintence=personPersintence;
 	}
