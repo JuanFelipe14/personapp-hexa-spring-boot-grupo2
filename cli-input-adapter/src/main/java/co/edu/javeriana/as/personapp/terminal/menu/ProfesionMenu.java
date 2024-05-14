@@ -5,7 +5,6 @@ import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
 import co.edu.javeriana.as.personapp.terminal.adapter.PersonaInputAdapterCli;
 import co.edu.javeriana.as.personapp.terminal.adapter.ProfesionInputAdapterCli;
 import lombok.extern.slf4j.Slf4j;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +19,9 @@ public class ProfesionMenu {
     private static final int OPCION_VER_TODO = 1;
     // mas opciones
 
+
     public void iniciarMenu(ProfesionInputAdapterCli profesionInputAdapterCli, Scanner keyboard) {
+
         boolean isValid = false;
         do {
             try {
@@ -37,6 +38,7 @@ public class ProfesionMenu {
                     case PERSISTENCIA_MONGODB:
                         profesionInputAdapterCli.setPersonOutputPortInjection("MONGO");
                         menuOpciones(profesionInputAdapterCli,keyboard);
+
                         break;
                     default:
                         log.warn("La opción elegida no es válida.");
@@ -48,6 +50,7 @@ public class ProfesionMenu {
     }
 
     private void menuOpciones(ProfesionInputAdapterCli profesionInputAdapterCli, Scanner keyboard) {
+
         boolean isValid = false;
         do {
             try {
@@ -59,6 +62,7 @@ public class ProfesionMenu {
                         break;
                     case OPCION_VER_TODO:
                         profesionInputAdapterCli.historial();
+
                         break;
                     // mas opciones
                     default:
@@ -73,6 +77,7 @@ public class ProfesionMenu {
     private void mostrarMenuOpciones() {
         System.out.println("----------------------");
         System.out.println(OPCION_VER_TODO + " para ver todas las profesiones");
+
         // implementar otras opciones
         System.out.println(OPCION_REGRESAR_MOTOR_PERSISTENCIA + " para regresar");
     }

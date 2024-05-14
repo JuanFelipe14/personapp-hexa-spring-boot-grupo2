@@ -1,5 +1,6 @@
 package co.edu.javeriana.as.personapp.mongo.adapter;
 
+
 import co.edu.javeriana.as.personapp.application.port.out.ProfessionOutputPort;
 import co.edu.javeriana.as.personapp.common.annotations.Adapter;
 import co.edu.javeriana.as.personapp.domain.Person;
@@ -61,4 +62,4 @@ public class ProfessionOutputAdapterMongo implements ProfessionOutputPort {
             return profesionMapperMongo.fromAdapterToDomain(professionRepositoryMongo.findById(identification).get());
         }
     }
-}
+

@@ -24,7 +24,6 @@ public class MenuPrincipal {
 	@Autowired
 	private ProfesionInputAdapterCli profesionInputAdapterCli;
 
-
 	private static final int SALIR = 0;
 	private static final int MODULO_PERSONA = 1;
 	private static final int MODULO_PROFESION = 2;
@@ -37,12 +36,14 @@ public class MenuPrincipal {
 	private final TelefonoMenu telefonoMenu;
 
 	private final ProfesionMenu profesionMenu;
+
 	private final Scanner keyboard;
 
     public MenuPrincipal() {
         this.personaMenu = new PersonaMenu();
 		this.telefonoMenu = new TelefonoMenu();
 		this.profesionMenu = new ProfesionMenu();
+
         this.keyboard = new Scanner(System.in);
     }
 
