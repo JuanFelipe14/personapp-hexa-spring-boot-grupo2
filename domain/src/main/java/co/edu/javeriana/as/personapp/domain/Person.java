@@ -31,4 +31,12 @@ public class Person {
 	public Boolean isValidAge() {
 		return this.age >= 0;
 	}
+
+	public Person(@NonNull Integer identification, @NonNull String firstName, @NonNull String lastName, @NonNull Gender gender, Integer age) {
+		this.identification = identification;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.age = age;
+	}
 }

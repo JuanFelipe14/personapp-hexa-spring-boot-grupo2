@@ -28,28 +28,28 @@ public class ProfesionOutputAdapterMaria   implements ProfessionOutputPort {
 
     @Override
     public Profession save(Profession profesion) {
-        log.debug("Into save on Adapter MariaDB");
+        //log.debug("Into save on Adapter MariaDB");
         ProfesionEntity persistedProfesion = profesionRepositoryMaria.save(profesionMapperMaria.fromDomainToAdapter(profesion));
         return profesionMapperMaria.fromAdapterToDomain(persistedProfesion);
     }
 
     @Override
     public Boolean delete(Integer identification) {
-        log.debug("Into delete on Adapter MariaDB");
+        //log.debug("Into delete on Adapter MariaDB");
         profesionRepositoryMaria.deleteById(identification);
         return profesionRepositoryMaria.findById(identification).isEmpty();
     }
 
     @Override
     public List<Profession> find() {
-        log.debug("Into find on Adapter MariaDB");
+        //log.debug("Into find on Adapter MariaDB");
         return profesionRepositoryMaria.findAll().stream().map(profesionMapperMaria::fromAdapterToDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Profession findById(Integer identification) {
-        log.debug("Into findById on Adapter MariaDB");
+        //log.debug("Into findById on Adapter MariaDB");
         if (profesionRepositoryMaria.findById(identification).isEmpty()) {
             return null;
         } else {
